@@ -1,0 +1,10 @@
+[package]
+name = "map-ok"
+description = "Mapping of Ok variants in an iterator"
+authors = ["Markus Mayer <github@widemeadows.de>"]
+categories = ["development-tools"]
+keywords = ["iterators", "map"]
+license = "MIT"
+readme = "README.md"
+version = "0.1.0"
+edition = "2021"
