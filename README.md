@@ -30,8 +30,8 @@ impl FromStr for Person {
 
 fn example() {
     let input = vec!["10", "20", "x", "30"];
-    let mut iterator = input.iter()
-        .map(|s| s.parse::<Person>())
+    let mut iterator = input.into_iter()
+        .map(Person::from_str)
         .map_ok(|p| p.age);
 
     assert_eq!(iterator.next(), Some(Ok(10)));

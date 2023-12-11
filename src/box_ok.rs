@@ -37,8 +37,8 @@ use crate::{MapOk, MapOkIter};
 /// }
 ///
 /// let input = vec!["10", "20", "x", "30"];
-/// let mut iterator = input.iter()
-///     .map(|s| s.parse::<Person>())
+/// let mut iterator = input.into_iter()
+///     .map(Person::from_str)
 ///     .map_ok(|p| p.age)
 ///     .box_ok();
 ///

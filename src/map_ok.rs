@@ -149,7 +149,7 @@ mod tests {
     #[test]
     fn map_ok_works() {
         let input = ["10", "20", "x", "30"];
-        let mut iterator = input.iter().map(|s| s.parse::<Person>()).map_ok(|p| p.age);
+        let mut iterator = input.into_iter().map(Person::from_str).map_ok(|p| p.age);
 
         assert_eq!(iterator.next(), Some(Ok(10)));
         assert_eq!(iterator.next(), Some(Ok(20)));
