@@ -2,6 +2,8 @@
 name = "map-ok"
 description = "Mapping of Ok variants in an iterator"
 authors = ["Markus Mayer <github@widemeadows.de>"]
+repository = "https://github.com/sunsided/map-ok"
+homepage = "https://docs.rs/map-ok/0.1.0"
 categories = ["development-tools"]
 keywords = ["iterators", "map"]
 license = "MIT"
