@@ -122,10 +122,10 @@ where
 
 #[cfg(test)]
 mod tests {
-    use super::*;
-
     use std::num::ParseIntError;
     use std::str::FromStr;
+
+    use super::*;
 
     struct Person {
         age: u8,
@@ -155,6 +155,21 @@ mod tests {
         assert_eq!(iterator.next(), Some(Ok(20)));
         assert!(iterator.next().unwrap().is_err());
         assert_eq!(iterator.next(), Some(Ok(30)));
+        assert_eq!(iterator.next(), None);
+    }
+
+    #[test]
+    fn naive() {
+        let input = ["10", "20", "x", "30"];
+        let mut iterator = input.into_iter().map(u32::from_str).map(|p| match p {
+            Ok(p) => Ok(p * 100),
+            Err(e) => Err(e),
+        });
+
+        assert_eq!(iterator.next(), Some(Ok(1000)));
+        assert_eq!(iterator.next(), Some(Ok(2000)));
+        assert!(iterator.next().unwrap().is_err());
+        assert_eq!(iterator.next(), Some(Ok(3000)));
         assert_eq!(iterator.next(), None);
     }
 }
