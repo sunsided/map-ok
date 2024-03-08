@@ -70,10 +70,10 @@ where
 
 #[cfg(test)]
 mod tests {
-    use super::*;
-
     use std::num::ParseIntError;
     use std::str::FromStr;
+
+    use super::*;
 
     struct Person {
         age: u8,
@@ -108,5 +108,29 @@ mod tests {
         assert!(iterator.next().unwrap().is_err());
         assert_eq!(iterator.next(), Some(Ok(Box::new(30))));
         assert_eq!(iterator.next(), None);
+    }
+
+    #[test]
+    fn naive() {
+        let input = ["10", "20", "x", "30"];
+        let results: Vec<Result<Box<u32>, ParseIntError>> = input
+            .into_iter()
+            .map(u32::from_str)
+            .map_ok(|x| x * 100)
+            .box_ok()
+            .collect();
+        assert_eq!(results.len(), 4);
+    }
+
+    #[test]
+    fn naive2() {
+        let input = ["10", "20", "x", "30"];
+        let results: Vec<Result<Box<u32>, ParseIntError>> = input
+            .into_iter()
+            .map(u32::from_str)
+            .map_ok(|x| x * 100)
+            .map_ok(Box::new)
+            .collect();
+        assert_eq!(results.len(), 4);
     }
 }

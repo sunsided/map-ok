@@ -1,4 +1,4 @@
-# MapOk
+# MapOk / BoxOk
 
 This crate provides the `MapOk` trait that allows mapping `Ok` variants in an iterator to a different type. Instead
 of matching `Result` variants in a `map` call, you call
@@ -19,6 +19,21 @@ fn example() {
         Ok(x) => Ok(x * 100),
         Err(e) => Err(e),
     });
+}
+```
+
+Likewise, the `box_ok` function wraps the contents of the `Ok` variant into a `Box`, i.e. it behaves
+like `.map_ok(Box::new)`:
+
+```rust
+fn example() {
+    let input = ["10", "20", "x", "30"];
+    let results: Vec<Result<Box<u32>, ParseIntError>> = input
+        .into_iter()
+        .map(u32::from_str)
+        .map_ok(|x| x * 100)
+        .box_ok()
+        .collect();
 }
 ```
 
