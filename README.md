@@ -1,5 +1,7 @@
 # MapOk / BoxOk
 
+[![codecov](https://codecov.io/gh/sunsided/map-ok/graph/badge.svg?token=DHREBDQ19F)](https://codecov.io/gh/sunsided/map-ok)
+
 This crate provides the `MapOk` trait that allows mapping `Ok` variants in an iterator to a different type. Instead
 of matching `Result` variants in a `map` call, you call
 
